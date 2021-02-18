@@ -1,62 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Pages/home_page.dart';
+import 'package:flutter_app/Pages/login_page.dart';
 
-void main()
-{
-  runApp(new MaterialApp(
-
-    home: new MyApp(),
-
-  ));
+void main() {
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget
-{
-  @override
-  _State createState() => new _State();
-}
-
-
-class _State extends State<MyApp>
-{
-
-  String _value = 'Hellow';
-
-  void _onPressed(String value){
-    setState(() {
-      _value = value;
-    });
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return new Scaffold(
-      appBar: new AppBar(
-
-        title: new Text('Hello World'),
-
+    return MaterialApp(
+      themeMode: ThemeMode.light,
+      theme: ThemeData(primarySwatch: Colors.deepOrange),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
       ),
-
-
-
-      body: new Container(
-
-        padding: new EdgeInsets.all(32.0),
-        child: new Center(
-          child:  new Column(
-
-            children: <Widget>[
-              new Text(_value),
-              //new RaisedButton(onPressed: _onPressed,child: new Text('Click Me')),
-              new RaisedButton(onPressed: () => _onPressed('Hello Mannu'),child: new Text('Click Me')),
-              new FlatButton(onPressed: () => _onPressed('Hello Pawan'),child: new Text('Click Me'), color: Colors.red),
-
-            ],
-          ),
-
-        ),
-      ),
+      initialRoute: "/home",
+      routes: {
+        "/": (context) => LoginPage(),
+        "/home": (context) => HomePage(),
+        "/login": (context) => LoginPage()
+      },
     );
   }
 }
-
